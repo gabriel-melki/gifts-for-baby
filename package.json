@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "update-domains": "node scripts/update-image-domains.js"
+    "update-domains": "node scripts/update-image-domains.js",
+    "set-custom-price-all": "node scripts/set-custom-price-all.js"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.0",

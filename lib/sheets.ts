@@ -93,7 +93,7 @@ export class SheetsService {
         reservedDate: row[7] || '',
         reservedEmail: row[8] || '',
         reservedMessage: row[9] || '',
-        isCustomPrice: row[10]?.toLowerCase() === 'true' || row[10]?.toLowerCase() === 'yes',
+        isCustomPrice: true,
         contributionCount: parseInt(row[11]) || 0,
         isGifted: row[12]?.toLowerCase() === 'true' || row[12]?.toLowerCase() === 'yes',
       }));

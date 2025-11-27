@@ -147,7 +147,7 @@ export default function GiftForm({ item }: GiftFormProps) {
           name="name"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-3 border border-cream-300 bg-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-4 py-3 border border-cream-300 bg-white text-gray-900 placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           placeholder={t('enterFullName')}
           autoComplete="name"
           autoCapitalize="words"
@@ -166,7 +166,7 @@ export default function GiftForm({ item }: GiftFormProps) {
           name="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-3 border border-cream-300 bg-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-4 py-3 border border-cream-300 bg-white text-gray-900 placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           placeholder={t('enterEmail')}
           autoComplete="email"
           required
@@ -185,7 +185,7 @@ export default function GiftForm({ item }: GiftFormProps) {
               name="customPrice"
               value={formData.customPrice}
               onChange={(e) => setFormData({ ...formData, customPrice: e.target.value })}
-              className="w-full pl-8 pr-4 py-3 border border-cream-300 bg-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              className="w-full pl-8 pr-4 py-3 border border-cream-300 bg-white text-gray-900 placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 no-spinner"
               placeholder={t('enterAmount')}
               min="1"
               step="0.01"
@@ -208,7 +208,7 @@ export default function GiftForm({ item }: GiftFormProps) {
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           rows={4}
-          className="w-full px-4 py-3 border border-cream-300 bg-white rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+          className="w-full px-4 py-3 border border-cream-300 bg-white text-gray-900 placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
           placeholder={t('messageDescription')}
           autoComplete="off"
           spellCheck="true"
