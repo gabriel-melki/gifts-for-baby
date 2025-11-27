@@ -18,7 +18,7 @@ export default async function Home() {
     <main className="container mx-auto px-4 py-8">
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-8">
-          <Gift className="h-8 w-8 text-primary-600" />
+          <Heart className="h-8 w-8 text-red-600" />
           <h1 className="text-2xl md:text-4xl font-bold text-gray-900" style={{fontFamily: env.titleFont}}>{env.pageTitle}</h1>
           <Heart className="h-8 w-8 text-red-500" />
         </div>

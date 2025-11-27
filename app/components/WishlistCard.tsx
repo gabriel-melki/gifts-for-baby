@@ -17,7 +17,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
 
   return (
     <>
-      <div className="bg-cream-50 border border-cream-200 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 hover:shadow-xl">
+      <div className="bg-cream-50 border border-cream-200 rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105 hover:shadow-xl h-full flex flex-col">
         <div className="relative">
           <SafeImage
             src={item.image}
@@ -47,7 +47,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
           )}
         </div>
       
-      <div className="p-6">
+      <div className="p-6 flex flex-col h-full">
         <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
           {item.name}
         </h3>
@@ -56,6 +56,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
           {item.description}
         </p>
         
+        <div className="mt-auto">
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col">
             <span className="text-2xl font-bold text-primary-600">
@@ -102,6 +103,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
             </div>
           </Link>
         )}
+        </div>
       </div>
     </div>
     
