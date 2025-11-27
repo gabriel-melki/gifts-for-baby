@@ -1,4 +1,4 @@
-import { config } from '../config';
+import { env } from './env';
 
 // =============================================================================
 // TRANSLATIONS - Easy to Edit Copy
@@ -271,7 +271,7 @@ export const translations = {
 // =============================================================================
 
 export function t(key: string): string {
-  const lang = config.language || 'en';
+  const lang = env.language || 'en';
   const langTranslations = translations[lang as keyof typeof translations] || translations.en;
   return langTranslations[key as keyof typeof langTranslations] || key;
 }

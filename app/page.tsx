@@ -1,5 +1,5 @@
 import { SheetsService } from '../lib/sheets';
-import { config } from '../config';
+import { env } from '../lib/env';
 import { t } from '../lib/translations';
 import WishlistGrid from './components/WishlistGrid';
 import { Gift, Heart } from 'lucide-react';
@@ -19,7 +19,7 @@ export default async function Home() {
       <div className="text-center mb-12">
         <div className="flex items-center justify-center gap-3 mb-8">
           <Gift className="h-8 w-8 text-primary-600" />
-          <h1 className="text-2xl md:text-4xl font-bold text-gray-900" style={{fontFamily: 'Playwrite ZA'}}>{config.pageTitle}</h1>
+          <h1 className="text-2xl md:text-4xl font-bold text-gray-900" style={{fontFamily: env.titleFont}}>{env.pageTitle}</h1>
           <Heart className="h-8 w-8 text-red-500" />
         </div>
       </div>

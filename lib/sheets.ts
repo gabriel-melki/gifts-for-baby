@@ -1,5 +1,21 @@
 import { google } from 'googleapis';
-import { config } from '../config';
+import { env } from './env';
+
+// Default placeholder used when no valid image is available
+const DEFAULT_PLACEHOLDER_IMAGE =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTk5OTkiPkFydGljbGUgY2FkZWF1PC90ZXh0Pjwvc3ZnPg==';
+
+// Returns true when the provided URL points directly to an image resource
+function isDirectImageUrl(possibleUrl: string): boolean {
+  if (!possibleUrl) return false;
+  try {
+    const parsed = new URL(possibleUrl);
+    const pathname = parsed.pathname.toLowerCase();
+    return /\.(png|jpe?g|webp|gif|bmp|svg)$/.test(pathname);
+  } catch {
+    return false;
+  }
+}
 
 // Handle service account for both local and production environments
 async function getServiceAccount() {
@@ -59,7 +75,7 @@ export class SheetsService {
     await this.initialized;
     try {
       const response = await this.sheets.spreadsheets.values.get({
-        spreadsheetId: config.spreadsheetId,
+        spreadsheetId: env.spreadsheetId,
         range: 'Sheet1!A2:M', // Extended to column M to include IsGifted
       });
 
@@ -71,7 +87,7 @@ export class SheetsService {
         description: row[1] || '',
         price: row[2] || '',
         link: row[3] || '',
-        image: row[4] || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjE1MCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTk5OTkiPkFydGljbGUgY2FkZWF1PC90ZXh0Pjwvc3ZnPg==',
+        image: row[4] || (isDirectImageUrl(row[3] || '') ? row[3] : DEFAULT_PLACEHOLDER_IMAGE),
         isReserved: row[5]?.toLowerCase() === 'true' || row[5]?.toLowerCase() === 'yes',
         reservedBy: row[6] || '',
         reservedDate: row[7] || '',
@@ -105,7 +121,7 @@ export class SheetsService {
       ];
 
       await this.sheets.spreadsheets.values.update({
-        spreadsheetId: config.spreadsheetId,
+        spreadsheetId: env.spreadsheetId,
         range,
         valueInputOption: 'USER_ENTERED',
         resource: { values },
@@ -133,7 +149,7 @@ export class SheetsService {
       const values = [[newCount.toString()]];
 
       await this.sheets.spreadsheets.values.update({
-        spreadsheetId: config.spreadsheetId,
+        spreadsheetId: env.spreadsheetId,
         range,
         valueInputOption: 'USER_ENTERED',
         resource: { values },
@@ -168,7 +184,7 @@ export class SheetsService {
       ];
 
       await this.sheets.spreadsheets.values.update({
-        spreadsheetId: config.spreadsheetId,
+        spreadsheetId: env.spreadsheetId,
         range,
         valueInputOption: 'USER_ENTERED',
         resource: { values },

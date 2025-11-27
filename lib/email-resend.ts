@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { config } from '../config';
+import { env } from './env';
 import { t } from './translations';
 
 export interface GiftNotification {
@@ -66,8 +66,8 @@ export class ResendEmailService {
       // Note: Email addresses are intentionally not logged for privacy
       
       const result = await this.resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || `${config.pageTitle} <onboarding@resend.dev>`,
-        to: config.emails,
+        from: process.env.RESEND_FROM_EMAIL || `${env.pageTitle} <onboarding@resend.dev>`,
+        to: env.notificationEmails,
         subject: `🎁 ${t('giftAlert')}: ${notification.giftedBy} ${t('wantsToGiftYou')} "${notification.itemName}"`,
         html: emailHTML,
       });
@@ -115,7 +115,7 @@ export class ResendEmailService {
       `;
 
       const result = await this.resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || `${config.pageTitle} <onboarding@resend.dev>`,
+        from: process.env.RESEND_FROM_EMAIL || `${env.pageTitle} <onboarding@resend.dev>`,
         to: [email],
         subject: `💳 ${t('paymentSubject')} : ${instructions.itemName} (${instructions.price})`,
         html: emailHTML,

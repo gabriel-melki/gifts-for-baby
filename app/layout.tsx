@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from "@vercel/analytics/next"
-import { config } from '../config'
+import { env } from '../lib/env'
 import { t } from '../lib/translations'
 import './globals.css'
 
@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: config.pageTitle,
+  title: env.pageTitle,
   description: t('registryDescription'),
   icons: {
     icon: [
@@ -21,24 +21,24 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: config.pageTitle,
+    title: env.pageTitle,
     description: t('registryDescription'),
     type: 'website',
     url: '/',
-    siteName: config.pageTitle,
+    siteName: env.pageTitle,
     images: [
       {
         url: '/android-chrome-512x512.png',
         width: 512,
         height: 512,
-        alt: config.pageTitle,
+        alt: env.pageTitle,
         type: 'image/png',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: config.pageTitle,
+    title: env.pageTitle,
     description: t('registryDescription'),
     images: ['/android-chrome-512x512.png'],
   },

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { WishlistItem } from '../../lib/sheets';
-import { config } from '../../config';
+import { env } from '../../lib/env';
 import { t } from '../../lib/translations';
 import { ExternalLink, Loader2, Mail } from 'lucide-react';
 
@@ -21,7 +21,7 @@ export default function GiftForm({ item }: GiftFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
 
-  const revolutLink = config.revolutLink;
+  const revolutLink = env.revolutLink;
 
 
   const validateEmail = (email: string): boolean => {

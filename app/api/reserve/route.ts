@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SheetsService } from '../../../lib/sheets';
 import { ResendEmailService } from '../../../lib/email-resend';
-import { config } from '../../../config';
+import { env } from '../../../lib/env';
 
 export async function POST(request: NextRequest) {
   try {
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     let emailSent = false;
     try {
       const emailService = new ResendEmailService();
-      const revolutLink = config.revolutLink;
+      const revolutLink = env.revolutLink;
       
       const emailSuccess = await emailService.sendPaymentInstructions(email, {
         itemName: item.name,
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Prepare response message with payment instructions
-    const revolutLink = config.revolutLink;
+    const revolutLink = env.revolutLink;
     const baseMessage = item.isCustomPrice ? 'Contribution recorded successfully' : 'Item reserved successfully';
     const emailMessage = emailSent ? 'Payment instructions sent to your email.' : `Email delivery failed. Please pay ${displayPrice} via Revolut: ${revolutLink}`;
     

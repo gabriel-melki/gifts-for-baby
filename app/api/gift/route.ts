@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SheetsService } from '../../../lib/sheets';
 import { ResendEmailService } from '../../../lib/email-resend';
-import { config } from '../../../config';
 
 export async function POST(request: NextRequest) {
   try {
