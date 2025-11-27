@@ -121,7 +121,7 @@ export default async function GiftPage({ params }: PageProps) {
             </p>
             <div className="flex items-center justify-between">
               <span className="text-3xl font-bold text-primary-600">
-                {item.price}
+                {item.price} €
               </span>
               {item.link && (
                 <a

@@ -59,7 +59,7 @@ export default function WishlistCard({ item }: WishlistCardProps) {
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col">
             <span className="text-2xl font-bold text-primary-600">
-              {item.price}
+              {item.price} €
             </span>
           </div>
           {item.link && (
